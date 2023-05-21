@@ -1,11 +1,11 @@
 import React from "react";
 
-const Footer = () => {
+const Exchanges = () => {
     return (
         <div>
-            Footer
+            Exchanges
         </div>
     )
 }
 
-export default Footer;
+export default Exchanges;
