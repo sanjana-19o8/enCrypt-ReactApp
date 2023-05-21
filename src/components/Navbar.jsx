@@ -7,14 +7,27 @@ import icon from '../images/logo192.png';
 const Navbar = () => {
     return (
         <div className="nav-containere">
+
             <div className="logo-container">
                 <Avatar src={icon} size="large"/>
                 <Typography.Title level={2} className="logo">
                     <Link>enCrypt</Link>
                 </Typography.Title>
-                <Button className="menu-control-container">
-                </Button>
             </div>
+            <Menu theme="dark">
+                <Menu.Item icon={ <HomeOutlined />}>
+                    <Link to='/'>Home</Link>
+                </Menu.Item>
+                <Menu.Item icon={ <FundOutlined />}>
+                    <Link to='/cryptocurrencies'>Cryptocurrencies</Link>
+                </Menu.Item>
+                <Menu.Item icon={ <MoneyCollectOutlined />}>
+                    <Link to='/'>Exchanges</Link>
+                </Menu.Item>
+                <Menu.Item icon={ <BulbOutlined />}>
+                    <Link to='/'>News</Link>
+                </Menu.Item>
+            </Menu>
         </div>
     )
 }

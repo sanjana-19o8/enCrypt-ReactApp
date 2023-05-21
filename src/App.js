@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Navbar, Home, Footer} from './components/index';
+import { Navbar} from './components/index';
 
 const App = () => {
   return (
@@ -8,12 +8,6 @@ const App = () => {
       <div className='navbar'>
         <Navbar />
       </div>
-      {/* <div className='home'>
-        <Home />
-      </div>
-      <div className='footer'>
-        <Footer />
-      </div> */}
     </div>
   );
 }
