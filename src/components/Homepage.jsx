@@ -2,11 +2,13 @@ import React from "react";
 import millify from "millify";
 import { Typography, Row, Col, Statistic } from "antd";
 import { Link, Route} from 'react-router-dom';
-import { useGetCryptosQuery } from "../services/cryptoApi";
-const Homepage = () => {
-    const { data, error, isLoading } = useGetCryptosQuery();
 
-    console.log(data);
+import { useGetCryptosQuery } from "../services/cryptoApi";
+import { Cryptocurrencies, News} from "./index";
+
+
+const Homepage = () => {
+    const { data, error, isLoading } = useGetCryptosQuery(10);
     const globalStats = data?.data?.stats;
 
     if(isLoading) return 'Loading... ';
@@ -21,6 +23,16 @@ const Homepage = () => {
             <Col span={12}><Statistic title="Total 24h Volume" value={error?'err' : millify(globalStats.total24hVolume)} /></Col>
             <Col span={12}><Statistic title="Total Markets" value={error?'err' : millify(globalStats.totalMarkets)} /></Col>
         </Row>
+        <div className="home-heading-container">
+            <Typography.Title level={2} className="home-title">Top 10 Cryptocurrencies</Typography.Title>
+            <Typography.Title level={3} className="show-more"><Link to='/cryptocurrencies'>Show More</Link></Typography.Title>
+        </div>
+        <Cryptocurrencies simplified={true} />
+        <div className="home-heading-container">
+            <Typography.Title level={2} className="home-title">Latest Crypto News</Typography.Title>
+            <Typography.Title level={3} className="show-more"><Link to='/news'>Goto Newsfeed</Link></Typography.Title>
+        </div>
+        <News />
         </>
     )
 }
