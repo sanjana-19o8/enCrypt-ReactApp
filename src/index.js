@@ -4,13 +4,20 @@ import { BrowserRouter } from 'react-router-dom/dist';
 import './index.css';
 import App from './App';
 import 'antd/dist/antd';
+import store from './app/store';
+import { Provider } from 'react-redux';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
+
+setupListeners(store.dispatch);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
