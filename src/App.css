@@ -314,9 +314,9 @@ width: 70%;
   clear: both;
   display: flex;
   justify-content: space-between;
+  padding-top: 10px;
   
-  bottom: 0;
-  left: 0;
+  font-weight: lighter;
 }
 .provider-name{
   margin-left: 10px;
