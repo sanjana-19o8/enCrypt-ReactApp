@@ -300,10 +300,11 @@ padding: 0px 20px;
 .news-title{
 width: 70%;
 }
-
-.news-image-container .img{
-  width:100px;
-  height:100px;
+.news-image{
+  width:150px;
+  height:150px;
+  float: left;
+  margin-right: 10px;
 }
 .news-card p{
   color: black;

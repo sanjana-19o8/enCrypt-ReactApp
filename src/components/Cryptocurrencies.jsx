@@ -3,7 +3,7 @@ import millify from "millify";
 import { Row, Col, Card, Input} from 'antd';
 import { Link } from "react-router-dom";
 
-import { useGetCryptosQuery} from '../services/cryptoApi'
+import { useGetCryptosQuery} from '../services/cryptoApi';
 
 
 const Cryptocurrencies = ( props) => {

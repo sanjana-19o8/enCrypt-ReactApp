@@ -6,7 +6,7 @@ const api_host= 'https://coinranking1.p.rapidapi.com';
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://coinranking1.p.rapidapi.com',
+    baseUrl: api_host,
     prepareHeaders: (headers) => {
       headers.set('X-RapidAPI-Key', api_key)
       return headers;
@@ -15,7 +15,10 @@ export const cryptoApi = createApi({
     getCryptos: builder.query({
       query: (count) => `/coins?limit=${count}`,
     }),
+    getCryptoDetails: builder.query({
+      query: (coinId) => `/coin/${coinId}`,
+    }),
     }),
 })
 
-export const { useGetCryptosQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCryptoDetailsQuery } = cryptoApi;
