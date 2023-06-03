@@ -311,8 +311,12 @@ width: 70%;
   margin: 10px 0px !important;
 }
 .provider-container{
+  clear: both;
   display: flex;
   justify-content: space-between;
+  
+  bottom: 0;
+  left: 0;
 }
 .provider-name{
   margin-left: 10px;
