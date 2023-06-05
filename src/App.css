@@ -204,42 +204,48 @@ a:hover{
   opacity: 0.9;
 }
 
-.coin-desc-link{
+.coin-desc{
   display: flex;
-  gap: 40px;
   margin-top: 40px;
   padding-top: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.coin-desc-link h2{
+.coin-desc h2{
   font-weight: 700;
   color: var(--pink);
 }
 
-.coin-desc-link p{
+.coin-desc p{
   font-size: 1rem;
   opacity: 0.9;
 }
 
-.coin-desc-link a{
+.coin-links a{
   color: var(--pink);
 }
 
-.coin-desc-link h3{
+.coin-desc h3{
   font-weight: 700;
+  
 }
 
 .coin-desc{
-  flex: 0.5;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .coin-links{
-padding: 0px 20px;
+  padding: 0px 20px;
   flex: 0.5;
+  justify-content: center;
+  width: calc(100% - 50px)
 }
 
 .coin-link{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--border);
