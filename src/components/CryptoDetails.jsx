@@ -6,7 +6,7 @@ import { Typography, Select, Row, Col } from "antd";
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, NumberOutlined, ThunderboltOutlined, CheckOutlined } from "@ant-design/icons";
 import LineChart from './LineChart';
 
-import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
+import { useGetCoinHistoryQuery, useGetCryptoDetailsQuery } from "../services/cryptoApi";
 
 const { Title, Text} = Typography;
 const time = ['3hrs', '24hrs', '7days', '30days', '3months', '1yr', '3yrs', '5yrs' ]
@@ -15,6 +15,7 @@ const CryptoDetails = () => {
     const { coinId} = useParams();
     const [ timePeriod, setTimePeriod] = useState('7days');
     const { data, isFetching} = useGetCryptoDetailsQuery(coinId);
+    const { data: coinHistory } = useGetCoinHistoryQuery('7d')
 
     const coinDetails = data?.data?.coin;
     if(isFetching) return 'Loading...';
@@ -54,7 +55,7 @@ const CryptoDetails = () => {
                     {time.map((timePeriod) => <Select.Option key={timePeriod}>{timePeriod}</Select.Option>)}
                 </Select>
 
-                <LineChart></LineChart>
+                <LineChart coinHistory={coinHistory} currentPrice={millify(coinDetails?.price)} coinName={coinDetails?.name} />
                 
                 <Col className="stats-container">
                     <Col className="coin-value-statistics">
