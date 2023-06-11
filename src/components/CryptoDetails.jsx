@@ -9,13 +9,13 @@ import LineChart from './LineChart';
 import { useGetCoinHistoryQuery, useGetCryptoDetailsQuery } from "../services/cryptoApi";
 
 const { Title, Text} = Typography;
-const time = ['3hrs', '24hrs', '7days', '30days', '3months', '1yr', '3yrs', '5yrs' ]
+const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y' ]
 
 const CryptoDetails = () => {
     const { coinId} = useParams();
-    const [ timePeriod, setTimePeriod] = useState('7days');
+    const [ timePeriod, setTimePeriod] = useState('7d');
     const { data, isFetching} = useGetCryptoDetailsQuery(coinId);
-    const { data: coinHistory } = useGetCoinHistoryQuery('7d')
+    const { data: coinHistory } = useGetCoinHistoryQuery({coinId, timePeriod})
 
     const coinDetails = data?.data?.coin;
     if(isFetching) return 'Loading...';
@@ -48,7 +48,7 @@ const CryptoDetails = () => {
                 </p>
                 <Select 
                 placeholder='Select a timeperiod' 
-                defaultValue='7days' 
+                defaultValue='7d' 
                 onChange={(time) => {setTimePeriod(time)}} 
                 className="select-timeperiod"
                 >
