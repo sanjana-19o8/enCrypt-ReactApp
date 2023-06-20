@@ -1,16 +1,9 @@
 import React from "react";
-import { useParams } from "react-router";
 import { Line } from 'react-chartjs-2';
 import { Row, Col, Typography } from 'antd';
 import { Chart } from "chart.js";
 
-import { useGetCoinHistoryQuery } from "../services/cryptoApi";
-
-const LineChart = ({ timePeriod, currentPrice, coinName}) => {
-    const { coinId} = useParams();
-    const { data: coinHistory, isFetching } = useGetCoinHistoryQuery({coinId, timePeriod});
-
-    if(isFetching) return ('Loading...');
+const LineChart = ({ coinHistory, currentPrice, coinName}) => {
     
     const coinPrice = [];
     const coinTimeStamp = [];
