@@ -1,41 +1,52 @@
 import React from "react";
+import { useParams } from "react-router";
 import { Line } from 'react-chartjs-2';
 import { Row, Col, Typography } from 'antd';
+import { Chart } from "chart.js";
 
-const LineChart = ({ coinHistory, currentPrice, coinName}) => {
+import { useGetCoinHistoryQuery } from "../services/cryptoApi";
+
+const LineChart = ({ timePeriod, currentPrice, coinName}) => {
+    const { coinId} = useParams();
+    const { data: coinHistory, isFetching } = useGetCoinHistoryQuery({coinId, timePeriod});
+
+    if(isFetching) return ('Loading...');
     
     const coinPrice = [];
     const coinTimeStamp = [];
 
-    for(let i=0; i< coinHistory?.data?.history?.length; i += 1){
+    console.log(coinHistory)
+
+    for(let i=0; i< coinHistory?.data?.history.length; i += 1){
         coinPrice.push(coinHistory?.data?.history[i].price);
-        coinTimeStamp.push(new Date(coinHistory?.data?.history[i].timestamp));
-    }
-    
-    const data = {
-        labels: coinTimeStamp,
-        datasets: [
-            {
-                label: 'Price in USD',
-                data: coinPrice,
-                fill: false,
-                backgroundColor: '#0071bd',
-                borderColor: '#0071bd',
-            },
-        ],
+        coinTimeStamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
     }
 
+    const data = {
+        labels: coinTimeStamp,
+        datasets: [{
+            label: 'Price in USD',
+            data: coinPrice,
+            fill: false,
+            backgroundColor: '#0071bd',
+            borderColor: '#0071bd',
+            tension: 0,
+        }]
+    }
     const options = {
         scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    },
+            yAxes:{
+                beginAtZero: true,
+                ticks: {
+                    precision: 0,
                 },
-            ],
+            },
         },
     }
+
+    console.log(data)
+    Chart.register(Chart.LinearScale);
+    Chart.register(Chart.CategoryScale);
 
     return (
         <>

@@ -12,8 +12,6 @@ const News = ( props) => {
     const [ selectedCrypto, setSelectedCrypto] = useState('Cryptocurrency');
     const { data: cryptoData} = useGetCryptosQuery(100);
     const { data, isFetching} = useGetNewsQuery({ newsCategory: selectedCrypto, count: props.simplified? 5:100});
-
-    console.log(cryptoData);
     
     if(isFetching) return 'Loading...'
 
