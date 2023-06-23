@@ -13,11 +13,11 @@ const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y' ]
 
 const CryptoDetails = () => {
     const { coinId} = useParams();
-    const [ timePeriod, setTimePeriod] = useState('7d');
-    const { data, isFetching} = useGetCryptoDetailsQuery(coinId);
-    const { data: coinHistory} = useGetCoinHistoryQuery({coinId, timePeriod});
+    const [ timeperiod, setTimeperiod] = useState('7d');
+    const { data: coinData, isFetching} = useGetCryptoDetailsQuery(coinId);
+    const { data: coinHistory, isLoading} = useGetCoinHistoryQuery({coinId, timeperiod});
 
-    const coinDetails = data?.data?.coin;
+    const coinDetails = coinData?.data?.coin;
     if(isFetching) return ('Loading...');
 
     const stats = [
@@ -49,14 +49,13 @@ const CryptoDetails = () => {
                 <Select 
                 placeholder='Select a timeperiod' 
                 defaultValue='7d' 
-                onChange={(time) => {setTimePeriod(time)}} 
+                onChange={(time) => {setTimeperiod(time)}} 
                 className="select-timeperiod"
                 >
-                    {time.map((timePeriod) => <Select.Option key={timePeriod}>{timePeriod}</Select.Option>)}
+                    {time.map((timeperiod) => <Select.Option key={timeperiod}>{timeperiod}</Select.Option>)}
                 </Select>
-                {console.log(coinHistory)}
 
-                <LineChart coinHistory={coinHistory} currentPrice={millify(coinDetails?.price)} coinName={coinDetails?.name} />
+                {!isLoading && <LineChart coinHistory={coinHistory} currentPrice={millify(coinDetails?.price)} coinName={coinDetails?.name} />}
                 
                 <Col className="stats-container">
                     <Col className="coin-value-statistics">

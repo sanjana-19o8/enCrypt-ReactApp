@@ -7,13 +7,12 @@ const LineChart = ({ coinHistory, currentPrice, coinName}) => {
     
     const coinPrice = [];
     const coinTimeStamp = [];
-
-    console.log(coinHistory)
-
+    
     for(let i=0; i< coinHistory?.data?.history.length; i += 1){
         coinPrice.push(coinHistory?.data?.history[i].price);
         coinTimeStamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
     }
+    console.log(coinHistory, coinPrice, coinTimeStamp)
 
     const data = {
         labels: coinTimeStamp,
@@ -38,11 +37,12 @@ const LineChart = ({ coinHistory, currentPrice, coinName}) => {
     }
 
     console.log(data)
-    Chart.register(Chart.LinearScale);
-    Chart.register(Chart.CategoryScale);
+    // Chart.register(Chart.LinearScale);
+    // Chart.register(Chart.CategoryScale);
 
     return (
         <>
+        'check'
         <Row className="chart-header">
             <Typography.Title level={2} className="chart-title">{coinName} Price Chart</Typography.Title>
             <Col className="price-container">
