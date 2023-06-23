@@ -1,7 +1,6 @@
 import React from "react";
 import { Line } from 'react-chartjs-2';
 import { Row, Col, Typography } from 'antd';
-import { Chart } from "chart.js";
 
 const LineChart = ({ coinHistory, currentPrice, coinName}) => {
     
