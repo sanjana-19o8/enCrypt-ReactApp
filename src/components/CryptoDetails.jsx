@@ -95,7 +95,7 @@ const CryptoDetails = () => {
                 </Row>
                 <Row className="coin-links">
                     {coinDetails?.links?.map(link => (
-                        <Col className="coin-link" key={link.name}>
+                        <Col className="coin-link" key={link.url}>
                             <Title level={5} className="link-name">{link.type}</Title>
                             <a href={link.url} target="_blank" rel="noreferrer">{link.name}</a>
                         </Col>
